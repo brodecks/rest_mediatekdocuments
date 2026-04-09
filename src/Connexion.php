@@ -112,4 +112,29 @@ class Connexion {
         }
     }
     
+    /**
+     * permet le début d'une transaction
+     * @return void
+     */
+    public function beginTransaction(): void{
+        $this->conn->beginTransaction();
+    }
+    
+    /**
+     * permet de valider les actions effectuées dans une transaction
+     * @return void
+     */
+    public function commit(): void{
+        $this->conn->commit();
+    }
+    
+    /**
+     * permet d'annuler les actions effectuées dans une transaction
+     * @return void
+     */
+    public function rollBack(): void{
+        if($this->conn->inTransaction()){
+            $this->conn->rollBack();
+        }
+    }
 }
